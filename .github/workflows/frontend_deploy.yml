@@ -6,7 +6,7 @@ env:
 
 # This is a basic workflow to help you get started with Actions
 
-name: Angular Kubernetes Deployment
+name: Frontend Deploy
 
 # Controls when the action will run.
 on:
