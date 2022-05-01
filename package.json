@@ -10,8 +10,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "docker:build": "docker build --pull --rm -f \"Dockerfile\" -t frontend-build:latest \".\"",
-    "docker:run": "docker run --rm -d -p 4200:80 -e PORT=4200 frontend-build:latest"
+    "docker:build": "docker build --no-cache --pull --rm --file \"Dockerfile\" -t frontend-build:latest \".\"",
+    "docker:run": "docker run --rm -e PORT=80 -p 4200:80 --name angular-container -d frontend-build:latest"
   },
   "private": true,
   "dependencies": {

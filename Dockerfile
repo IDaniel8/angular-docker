@@ -6,9 +6,9 @@ RUN yarn install
 RUN yarn run build --build-optimizer --output-path ./dist/appdist
 
 # Stage 2,ready for production with Nginx
-FROM nginx:1.15
+FROM nginx:1.17
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /srcapp/dist/appdist /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf.template
+CMD echo PORT=[$PORT] && sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
