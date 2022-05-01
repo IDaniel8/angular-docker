@@ -1,7 +1,5 @@
 name: Deploy Vercel CI
 on:
-  push:
-    branches: [development]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
