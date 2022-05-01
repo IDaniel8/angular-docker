@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_project:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,7 +29,8 @@ jobs:
           yarn install
           yarn build
 
-  deploy:
+  deploy_production:
+    needs: build_project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
