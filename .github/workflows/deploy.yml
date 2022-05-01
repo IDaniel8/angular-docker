@@ -44,7 +44,7 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           DOCKERFILE_NAME: "Dockerfile"
-          DOCKER_OPTIONS: "--pull --rm"
+          DOCKER_OPTIONS: "--no-cache"
         run: |-
           echo ${HEROKU_API_KEY} | docker login \
             --username=${HEROKU_EMAIL} \
