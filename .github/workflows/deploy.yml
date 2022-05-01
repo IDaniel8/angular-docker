@@ -43,7 +43,7 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          DOCKERFILE_NAME: "dockerfile"
+          DOCKERFILE_NAME: "Dockerfile"
           DOCKER_OPTIONS: "--pull --rm"
         run: |-
           echo ${HEROKU_API_KEY} | docker login \
@@ -54,3 +54,5 @@ jobs:
             --file ${DOCKERFILE_NAME} \
             ${DOCKER_OPTIONS} \
             --tag registry.heroku.com/${HEROKU_APP_NAME}/web .
+            heroku container:push web --app ${HEROKU_APP_NAME}
+            heroku container:release web --app ${HEROKU_APP_NAME}
