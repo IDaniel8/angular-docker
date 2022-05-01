@@ -31,22 +31,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-        run: |-
-          yarn install
 
       - name: Build Angular
         working-directory: ./
-        run: yarn build
+        run: |-
+          yarn install
+          yarn build
 
-      - name: push to heroku
+      - name: Build and push Docker to Heroku
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           DOCKERFILE_NAME: "dockerfile"
           DOCKER_OPTIONS: "--pull --rm"
-        run: |
-          run: |
+        run: |-
           echo ${HEROKU_API_KEY} | docker login \
             --username=${HEROKU_EMAIL} \
             registry.heroku.com \
