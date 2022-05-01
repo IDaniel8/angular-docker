@@ -1,1 +1,1 @@
-Angular Docker | CI/CP | Kubernetes Arch
+Angular | Docker | Github Actions CI/CP | Heroku
