@@ -3,7 +3,7 @@ FROM node:16.14-alpine as builder
 WORKDIR /srcapp
 COPY . /srcapp
 RUN yarn install
-RUN yarn run build --prod --build-optimizer --output-path ./dist/appdist
+RUN yarn run build --build-optimizer --output-path ./dist/appdist
 
 # Stage 2,ready for production with Nginx
 FROM nginx:1.15
