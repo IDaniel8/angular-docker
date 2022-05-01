@@ -10,5 +10,5 @@ FROM nginx:1.15
 RUN rm -rf /usr/share/nginx/html/*
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /srcapp/dist/appdist /usr/share/nginx/html
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
